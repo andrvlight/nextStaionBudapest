@@ -25,7 +25,7 @@ startBtn.addEventListener('click', () => {
     const name = nameInput.value.trim();
     if (!name) {
         alert('Please enter your name!');
-        nameInput.focus();
+        nameInputfocus();
         return;
     }
     mainMenu.style.display = 'none';
