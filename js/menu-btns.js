@@ -1,0 +1,33 @@
+const rulesBtn = document.querySelector('.rules-btn');
+const rulesSection = document.querySelector('.rules-section');
+const closeRulesBtn = document.querySelector('.close-rules-btn');
+
+rulesBtn.addEventListener('click', () => {
+    rulesSection.classList.add('active');
+});
+
+closeRulesBtn.addEventListener('click', () => {
+    rulesSection.classList.remove('active');
+});
+
+rulesSection.addEventListener('click', (e) => {
+    if (e.target === rulesSection) {
+        rulesSection.classList.remove('active');
+    }
+});
+
+const startBtn = document.querySelector('.start-game-btn');
+const mainMenu = document.querySelector('.main-menu');
+const gameScreen = document.querySelector('.game');
+const nameInput = document.querySelector('.input-name');
+
+startBtn.addEventListener('click', () => {
+    const name = nameInput.value.trim();
+    if (!name) {
+        alert('Please enter your name!');
+        nameInput.focus();
+        return;
+    }
+    mainMenu.style.display = 'none';
+    gameScreen.style.display = 'block';
+});

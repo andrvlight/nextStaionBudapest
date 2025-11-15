@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budapest Metro Builder</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div class="main-menu">
@@ -66,21 +66,9 @@
 <div class="game">
     <div class="game-layout">
         <div class="metro-left">
-            <div class="metro-grid">
-                <div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div>
-                <div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div>
-                <div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div>
-                <div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div>
-                <div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div>
-                <div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div>
-                <div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div>
-                <div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div>
-                <div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div>
-                <div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div>
-            </div>
+            <div class="metro-grid"></div>
         </div>
         <div class="game-sidebar">
-            <!-- Current Card -->
             <div class="card-section">
                 <h3>Current card</h3>
                 <div class="current-card">
@@ -96,17 +84,14 @@
                 </div>
             </div>
 
-            <!-- Timer -->
             <div class="timer-section">
                 <h3>Elapsed time</h3>
                 <div class="timer">00:00</div>
             </div>
 
-            <!-- Scoring Sheet -->
             <div class="scoring-section">
                 <h3>Scoring sheet:</h3>
                 <div class="scoring-board">
-                    <!-- Line indicators -->
                     <div class="scoring-row line-row">
                         <div class="line-indicator">
                             <svg class="line-icon"><use href="#icon-m1"/></svg>
@@ -155,7 +140,6 @@
                         <div class="total-box"></div>
                     </div>
 
-                    <!-- Totals row -->
                     <div class="scoring-row totals-row">
                         <div class="total-label"></div>
                         <div class="total-value"></div>
@@ -167,7 +151,6 @@
                         <div class="total-value"></div>
                     </div>
 
-                    <!-- Progress bar -->
                     <div class="progress-section">
                         <div class="progress-icon">
                             <svg class="bridge-icon"><use href="#icon-bridge"/></svg>
@@ -193,6 +176,7 @@
     </div>
 </div>
 
-<script src="index.js"></script>
+<script src="js/menu-btns.js"></script>
+<script src="js/create-grid.js"></script>
 </body>
 </html>
