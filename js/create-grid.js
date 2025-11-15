@@ -1,11 +1,17 @@
 const stationIcons = {
-    "A": "img/station_A.svg",
-    "B": "img/station_B.svg",
-    "C": "img/station_C.svg",
-    "D": "img/station_D.svg"
+    "A": "img/stations/station_A.png",
+    "B": "img/stations/station_B.png",
+    "C": "img/stations/station_C.png",
+    "D": "img/stations/station_D.png",
+    "?": "img/stations/deak-Ferenc.png"
 };
 
-// Дунай по маршруту из твоего скрина:
+const trainIcons = {
+    "A": "img/stations-with-train/station_A.png",
+    "C": "img/stations-with-train/station_C.png",
+    "D": "img/stations-with-train/station_D.png",
+};
+
 function isDanubeCell(i, j) {
     if (j === 5 && i <= 2) return true;
     if (j === 4 && i >= 4 && i <= 6) return true;
@@ -45,7 +51,17 @@ function renderMetroGrid(stations) {
                 stationDiv.classList.add('station');
                 if (stationIcons[station.type]) {
                     const img = document.createElement('img');
-                    img.src = stationIcons[station.type];
+                    if (station.x === 6 && station.y === 0)
+                        img.src = "img/metro-icons/M4(D).png";
+                    else if (station.x === 7 && station.y === 3)
+                        img.src = "img/metro-icons/M1(A).png";
+                    else if (station.x === 2 && station.y === 5)
+                        img.src = "img/metro-icons/M2(C).png";
+                    else if (station.x === 4 && station.y === 7)
+                        img.src = "img/metro-icons/M3(B).png";
+                    else
+                        img.src = stationIcons[station.type];
+                    if (station.train) img.src = trainIcons[station.type];
                     img.alt = station.type;
                     img.classList.add('station-icon');
                     stationDiv.appendChild(img);
