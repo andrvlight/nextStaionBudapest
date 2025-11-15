@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budapest Metro Builder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="main-menu">
+    <div class="container">
+        <div class="main-block">
+            <h1>Subways of Budapest</h1>
+            <input type="text" placeholder="Pls enter your name" class="input-name">
+            <div class="main-buttons">
+                <div class="btn-container">
+                    <button class="start-game-btn">Start Game</button>
+                </div>
+                <div class="btn-container" id="second-button">
+                    <button class="rules-btn">Rules</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="rules-section">
+    <div class="container">
+        <div class="rules-content">
+            <button class="close-rules-btn">&times;</button>
+            <h2>Game Rules</h2>
+            <div class="rules-text">
+                <h3>Objective</h3>
+                <p>Build Budapest's metro system by connecting stations across the city to maximize your score.</p>
+
+                <h3>How to Play</h3>
+                <ul>
+                    <li><strong>Drawing Sections:</strong> Click on a station and drag to another station to draw a metro line segment. Sections can be drawn at 90° or 45° angles following the grid.</li>
+                    <li><strong>Station Cards:</strong> Draw cards from the deck to determine which station you must connect to next.</li>
+                    <li><strong>Joker Card:</strong> The Joker allows you to connect to any available station on the board.</li>
+                    <li><strong>Rounds:</strong> Each round consists of drawing 8 cards. After 8 cards, a new metro line begins with a different color.</li>
+                </ul>
+
+                <h3>Building Rules</h3>
+                <ul>
+                    <li>Segments cannot intersect with each other</li>
+                    <li>Only one segment can connect any two stations</li>
+                    <li>No loops allowed - you cannot revisit stations on the same metro line</li>
+                    <li>Segments cannot pass through other stations</li>
+                </ul>
+
+                <h3>Scoring</h3>
+                <p><strong>Round Score:</strong> (Districts Covered × Max Stations in One District) + Danube Crossings</p>
+                <p><strong>Final Score:</strong> Sum of Round Scores + Station Points + Junction Bonuses</p>
+                <ul>
+                    <li>2 points for each station with 2 lines</li>
+                    <li>5 points for each station with 3 lines</li>
+                    <li>9 points for each station with 4 lines</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="game">
+    <div class="game-layout">
+        <div class="metro-left">
+            <div class="metro-grid">
+                <div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div>
+                <div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div>
+                <div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div>
+                <div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div>
+                <div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div>
+                <div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div>
+                <div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div>
+                <div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div>
+                <div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div>
+                <div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div><div class="metro-cell"></div>
+            </div>
+        </div>
+        <div class="game-sidebar">
+            <!-- Current Card -->
+            <div class="card-section">
+                <h3>Current card</h3>
+                <div class="current-card">
+                    <div class="card-content">
+                        <div class="card-station-type">A</div>
+                        <div class="card-people">
+                            <svg class="icon-person"><use href="#icon-person"/></svg>
+                            <svg class="icon-person"><use href="#icon-person"/></svg>
+                            <svg class="icon-person"><use href="#icon-person"/></svg>
+                            <svg class="icon-person"><use href="#icon-person"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timer -->
+            <div class="timer-section">
+                <h3>Elapsed time</h3>
+                <div class="timer">00:00</div>
+            </div>
+
+            <!-- Scoring Sheet -->
+            <div class="scoring-section">
+                <h3>Scoring sheet:</h3>
+                <div class="scoring-board">
+                    <!-- Line indicators -->
+                    <div class="scoring-row line-row">
+                        <div class="line-indicator">
+                            <svg class="line-icon"><use href="#icon-m1"/></svg>
+                        </div>
+                        <div class="score-box"></div>
+                        <div class="score-box"></div>
+                        <div class="score-box"></div>
+                        <div class="score-box"></div>
+                        <div class="junction-box">
+                            <svg class="junction-icon"><use href="#icon-junction"/></svg>
+                            <span class="multiplier">×</span>
+                        </div>
+                        <div class="score-result">=</div>
+                        <div class="total-box"></div>
+                    </div>
+
+                    <div class="scoring-row line-row">
+                        <div class="line-indicator">
+                            <svg class="line-icon"><use href="#icon-m2"/></svg>
+                        </div>
+                        <div class="score-box"></div>
+                        <div class="score-box"></div>
+                        <div class="score-box"></div>
+                        <div class="score-box"></div>
+                        <div class="junction-box">
+                            <svg class="junction-icon"><use href="#icon-junction"/></svg>
+                            <span class="multiplier">×</span>
+                        </div>
+                        <div class="score-result">=</div>
+                        <div class="total-box"></div>
+                    </div>
+
+                    <div class="scoring-row line-row">
+                        <div class="line-indicator">
+                            <svg class="line-icon"><use href="#icon-m3"/></svg>
+                        </div>
+                        <div class="score-box"></div>
+                        <div class="score-box"></div>
+                        <div class="score-box"></div>
+                        <div class="score-box"></div>
+                        <div class="junction-box">
+                            <svg class="junction-icon"><use href="#icon-junction"/></svg>
+                            <span class="multiplier">×</span>
+                        </div>
+                        <div class="score-result">=</div>
+                        <div class="total-box"></div>
+                    </div>
+
+                    <!-- Totals row -->
+                    <div class="scoring-row totals-row">
+                        <div class="total-label"></div>
+                        <div class="total-value"></div>
+                        <div class="total-value"></div>
+                        <div class="total-value"></div>
+                        <div class="total-value"></div>
+                        <div class="total-value"></div>
+                        <div class="total-value"></div>
+                        <div class="total-value"></div>
+                    </div>
+
+                    <!-- Progress bar -->
+                    <div class="progress-section">
+                        <div class="progress-icon">
+                            <svg class="bridge-icon"><use href="#icon-bridge"/></svg>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-tick"></div>
+                            <div class="progress-tick"></div>
+                            <div class="progress-tick">2</div>
+                            <div class="progress-tick">4</div>
+                            <div class="progress-tick">6</div>
+                            <div class="progress-tick">8</div>
+                            <div class="progress-tick">11</div>
+                            <div class="progress-tick">14</div>
+                            <div class="progress-tick">17</div>
+                            <div class="progress-tick">21</div>
+                            <div class="progress-tick">25</div>
+                        </div>
+                        <div class="final-score-box"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="index.js"></script>
+</body>
+</html>

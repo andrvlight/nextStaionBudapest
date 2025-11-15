@@ -1,0 +1,594 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.container {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+.main-menu {
+    padding: 60px 0;
+    background: #787676;
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: block;
+}
+
+.main-menu.hidden {
+    display: none;
+}
+
+.main-block {
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+    margin: 0 auto;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    border-radius: 15px;
+}
+
+.main-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.start-game-btn,
+.rules-btn {
+    font-size: 1.4em;
+    padding: 0.6em 0.8em;
+    border-radius: 0.5em;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 2px 2px 3px #000000b4;
+}
+
+.btn-container {
+    margin-top: 50px;
+    display: inline-block;
+    position: relative;
+    padding: 3px;
+    background: linear-gradient(90deg, #000000, #a62222);
+    border-radius: 0.9em;
+    transition: all 0.4s ease;
+    z-index: 0;
+}
+
+.btn-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    border-radius: 0.9em;
+    z-index: -1;
+    filter: blur(0);
+    transition: filter 0.4s ease;
+}
+
+.btn-container:hover::before {
+    background: linear-gradient(90deg, #a62222, #000000);
+    filter: blur(1.2em);
+}
+
+.btn-container:active::before {
+    filter: blur(0.2em);
+}
+
+.input-name {
+    margin-top: 50px;
+    font-size: 1.4em;
+    text-align: center;
+    border-radius: 15px;
+    height: 50px;
+}
+
+/* Rules Section Styles */
+.rules-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.rules-section.active {
+    display: flex;
+}
+
+.rules-content {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-rules-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    font-size: 2.5em;
+    color: #fff;
+    cursor: pointer;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: all 0.3s ease;
+}
+
+.close-rules-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: rotate(90deg);
+}
+
+.rules-content h2 {
+    color: #fff;
+    font-size: 2.5em;
+    margin-bottom: 25px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.rules-content h3 {
+    color: #fff;
+    font-size: 1.6em;
+    margin-top: 25px;
+    margin-bottom: 12px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.rules-text {
+    color: #f0f0f0;
+    font-size: 1.1em;
+    line-height: 1.7;
+}
+
+.rules-text p {
+    margin-bottom: 15px;
+}
+
+.rules-text ul {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.rules-text ul li {
+    margin-bottom: 10px;
+}
+
+.rules-text strong {
+    color: #fff;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .rules-content {
+        padding: 25px;
+        max-height: 85vh;
+    }
+
+    .rules-content h2 {
+        font-size: 2em;
+    }
+
+    .rules-content h3 {
+        font-size: 1.3em;
+    }
+
+    .rules-text {
+        font-size: 1em;
+    }
+}
+
+/* Game Section */
+.game {
+    width: 100vw;
+    min-height: 100vh;
+    background: #d8d8d8;
+    display: none;
+    padding: 20px;
+}
+
+.game.active {
+    display: flex;
+}
+
+.game-layout {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.metro-left {
+    flex: 0 0 auto;
+}
+
+.metro-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    width: 500px;
+    height: 500px;
+    background: #a0c8e0;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.metro-grid::before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 460px;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.10);
+    border-radius: 2px;
+    transform: rotate(45deg); /* Поворачивает линию под углом */
+}
+
+
+.metro-cell {
+
+    background: #fff;
+    border: 1px solid #b0b0b0;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9em;
+    box-sizing: border-box;
+    transition: background 0.3s;
+    border-radius: 4px;
+    position: relative;
+}
+
+.metro-cell:hover {
+    background: #e8f4ff;
+}
+
+/* Station styles */
+.metro-cell.station {
+    background: #f0f0f0;
+    cursor: pointer;
+}
+
+.metro-cell.station:hover {
+    background: #e0e0e0;
+}
+
+.station-marker {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #000;
+    z-index: 2;
+    background: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #000;
+}
+
+/* Train station styles */
+.metro-cell.train-station .station-marker {
+    border-color: #f1c40f;
+    background: #fff9e6;
+}
+
+.train-icon {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    font-size: 0.6em;
+    z-index: 1;
+}
+
+/* Game Sidebar */
+.game-sidebar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+}
+
+.game-sidebar h3 {
+    font-size: 0.9em;
+    color: #333;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+/* Current Card Section */
+.card-section {
+    background: #e0e0e0;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.current-card {
+    background: linear-gradient(to right, #555 0%, #555 20%, #888 20%, #888 25%, white 25%, white 75%, #888 75%, #888 80%, #555 80%, #555 100%);
+    border-radius: 8px;
+    padding: 20px;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-content {
+    text-align: center;
+}
+
+.card-station-type {
+    font-size: 3em;
+    font-weight: bold;
+    background: white;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    border: 4px solid #000;
+}
+
+.card-people {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.person {
+    font-size: 1.2em;
+}
+
+/* Timer Section */
+.timer-section {
+    background: #e0e0e0;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.timer {
+    font-size: 3em;
+    font-weight: bold;
+    text-align: center;
+    color: #000;
+}
+
+/* Scoring Section */
+.scoring-section {
+    background: #e0e0e0;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.scoring-board {
+    background: #6b2d6f;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.scoring-row {
+    display: grid;
+    grid-template-columns: 40px repeat(4, 1fr) 60px 30px 1fr;
+    gap: 5px;
+    margin-bottom: 8px;
+    align-items: center;
+}
+
+/* Icon styles */
+.icon-person {
+    width: 24px;
+    height: 24px;
+    fill: #6b2d6f;
+}
+
+.line-icon {
+    width: 35px;
+    height: 35px;
+}
+
+.junction-icon {
+    width: 20px;
+    height: 20px;
+    color: #6b2d6f;
+}
+
+.bridge-icon {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+.line-indicator {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.line-indicator.m1 {
+    background: #FFD800;
+    color: #000;
+}
+
+.line-indicator.m2 {
+    background: #E41F18;
+}
+
+.line-indicator.m3 {
+    background: #005CA5;
+}
+
+.score-box,
+.total-box {
+    background: white;
+    height: 35px;
+    border-radius: 5px;
+}
+
+.junction-box {
+    background: white;
+    height: 35px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+}
+
+.junction-icon {
+    font-size: 1.2em;
+}
+
+.multiplier {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.score-result {
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.totals-row {
+    border-top: 2px solid white;
+    padding-top: 8px;
+    margin-top: 8px;
+}
+
+.total-value {
+    background: white;
+    height: 30px;
+    border-radius: 5px;
+}
+
+/* Progress Section */
+.progress-section {
+    display: grid;
+    grid-template-columns: 40px 1fr 80px;
+    gap: 8px;
+    margin-top: 15px;
+    align-items: center;
+}
+
+.progress-icon {
+    width: 35px;
+    height: 35px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-bar {
+    display: flex;
+    gap: 3px;
+    align-items: flex-end;
+}
+
+.progress-tick {
+    flex: 1;
+    height: 20px;
+    background: white;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7em;
+    color: #333;
+    font-weight: bold;
+}
+
+.progress-tick:nth-child(odd) {
+    height: 25px;
+}
+
+.final-score-box {
+    background: white;
+    height: 40px;
+    border-radius: 5px;
+}
+
+@media (max-width: 1024px) {
+    .game-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .game-sidebar {
+        max-width: 500px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .metro-grid {
+        width: 90vw;
+        height: 90vw;
+        max-width: 400px;
+        max-height: 400px;
+    }
+}
