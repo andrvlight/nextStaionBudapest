@@ -104,7 +104,11 @@
     height: 50px;
 }
 
-/* Rules Section Styles */
+.name-error{
+    color: red;
+    display: none;
+}
+
 .rules-section {
     position: fixed;
     top: 0;
